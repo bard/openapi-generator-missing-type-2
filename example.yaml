@@ -1,0 +1,35 @@
+openapi: 3.0.2
+info:
+  title: Example
+  version: "1"
+paths:
+  "/characters":
+    get:
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                additionalProperties:
+                  type: array
+                  items:
+                    $ref: "#/components/schemas/Character"
+              example:
+                "Superman":
+                  - firstName: "Klark"
+                    lastName: "Kent"
+                  - firstName: "Lois"
+                    lastName: "Lane"
+                "Batman":
+                  - firstName: "Bruce"
+                    lastName: "Wayne"
+          description: A comic -> [character, character] map
+components:
+  schemas:
+    Character:
+      required: ["first", "name"]
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
